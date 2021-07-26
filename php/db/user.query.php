@@ -1,4 +1,9 @@
 <?php 
+/**
+ * DBに接続して、ユーザー情報を返すクエリを実行する。
+ * ログインや登録時に使用。
+ */
+
 namespace db;
 
 use db\DataSource;
@@ -6,7 +11,13 @@ use model\UserModel;
 
 class UserQuery {
 
-    // ユーザーidに一致するユーザー情報を返す。
+    /**
+     * ユーザーidに一致するユーザー情報を返す
+     * 
+     * @param int $int ユーザーID
+     * 
+     * @return bool 
+     */
     public static function fetchById($id) {
         $db = new DataSource;
         $sql = 'select * from users where id = :id;';
@@ -18,7 +29,13 @@ class UserQuery {
     }
 
 
-    // ユーザーidの登録を行い、結果を返す
+    /**
+     * ユーザーidの登録を行い、結果を返す
+     * 
+     * @param object $user ユーザーオブジェクト
+     * 
+     * @return bool 
+     */
     public static function insert($user) {
         $db = new DataSource;
         // ユーザー情報登録クエリ

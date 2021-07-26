@@ -20,6 +20,9 @@ class DataSource {
     }
 
 
+    /**
+     * select構文で複数行取得
+     */
     public function select($sql = "", $params = [], $type = '', $cls = '') {
         $stmt = $this->executeSql($sql, $params);
         if($type === static::CLS) {
@@ -44,6 +47,9 @@ class DataSource {
     }
 
 
+    /**
+     * select構文で1つのみ取得
+     */
     public function selectOne($sql = "", $params = [], $type = '', $cls = '') {
         $result = $this->select($sql, $params, $type, $cls);
         return count($result) > 0 ? $result[0] : false;

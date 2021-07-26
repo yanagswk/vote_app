@@ -6,7 +6,10 @@ use lib\Msg;
 use model\UserModel;
 
 function get() {
-    require_once SOURCE_BASE . 'views/register.php';
+    // require_once SOURCE_BASE . 'views/register.php';
+
+    // 関数でregister.phpを呼ぶ。
+    \view\register\index();
 }
 
 // register.phpをpostで取得した場合の処理

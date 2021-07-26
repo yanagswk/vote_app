@@ -8,19 +8,22 @@
 
 
 /**
- * getまたはpostのデータを返す
+ * getまたはpostで送られた、パラメータ値を返す
  * 
- * @param 
+ * @param string $key パラメーター
+ * @param int $default_val デフォルト値
+ * @param bool $is_post trueでPOST、falseでGET
  */
 function get_param($key, $default_val, $is_post=true) {
     $arry = $is_post ? $_POST : $_GET;
     return $arry[$key] ?? $default_val;
 }
 
+
 /**
- * リダイレクト処理関数
+ * リダイレクト処理
  * 
- * @param string $path パス
+ * @param string $path リダイレクト先
  */
 function redirect($path) {
     if ($path === GO_HOME) {
@@ -38,6 +41,21 @@ function redirect($path) {
 }
 
 
+/**
+ * 引数に指定したパスを出力
+ * 
+ * @param string $oath パス
+ */
+function the_url($path) {
+    echo get_url($path);
+}
+
+
+/**
+ * url取得
+ * 
+ * BASE_CONTEXT_PATHではだめ？
+ */
 function get_url($path) {
     return BASE_CONTEXT_PATH . trim($path, '/');
 }

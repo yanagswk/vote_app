@@ -9,35 +9,50 @@ require_once SOURCE_BASE . 'libs/router.php';
 // Model
 require_once SOURCE_BASE . 'models/abstract.model.php';
 require_once SOURCE_BASE . 'models/user.model.php';
+require_once SOURCE_BASE . 'models/topic.model.php';
+require_once SOURCE_BASE . 'models/comment.model.php';
 
-// Messgae
+// Message
 require_once SOURCE_BASE . 'libs/message.php';  // message.phpの中でabstract.model.phpを使っているため、ここに記述。
 
 // DB
 require_once SOURCE_BASE . 'db/datasource.php';
 require_once SOURCE_BASE . 'db/user.query.php';
+require_once SOURCE_BASE . 'db/topic.query.php';
+require_once SOURCE_BASE . 'db/comment.query.php';
+
+// Partials
+require_once SOURCE_BASE . 'partials/topic-list-item.php';
+require_once SOURCE_BASE . 'partials/topic-header-item.php';
+require_once SOURCE_BASE . 'partials/header.php';
+require_once SOURCE_BASE . 'partials/footer.php';
+
+// View
+require_once SOURCE_BASE . 'views/home.php';
+require_once SOURCE_BASE . 'views/login.php';
+require_once SOURCE_BASE . 'views/register.php';
+require_once SOURCE_BASE . 'views/topic/archive.php';
+require_once SOURCE_BASE . 'views/topic/detail.php';
 
 use function lib\route;
 
 session_start();
 
 try {
-    require_once SOURCE_BASE . 'partials/header.php';
-    
-    $rpath = str_replace(BASE_CONTEXT_PATH, '', CURRENT_URI);
+    // ヘッダー呼び出し
+    \partials\header();
+
+    // ディレクトリとファイルを分ける
+    $url = parse_url(CURRENT_URI);
+
+    $rpath = str_replace(BASE_CONTEXT_PATH, '', $url['path']);
     $method = strtolower($_SERVER['REQUEST_METHOD']);
     
+    // 表示画面呼び出し
     route($rpath, $method);
 
-    // if($_SERVER['REQUEST_URI'] === 'login') {
-    //     require_once SOURCE_BASE . 'controllers/login.php';
-    // } elseif($_SERVER['REQUEST_URI'] === '/poll/part1/end/register') {
-    //     require_once SOURCE_BASE . 'controllers/register.php';
-    // } elseif($_SERVER['REQUEST_URI'] === '/poll/part1/end/') {
-    //     require_once SOURCE_BASE . 'controllers/home.php';
-    // }
-
-    require_once SOURCE_BASE . 'partials/footer.php';
+    // フッダー呼び出し
+    \partials\footer();
 
 } catch(Throwable $e) {
     echo $e->getMessage();

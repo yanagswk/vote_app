@@ -50,14 +50,17 @@ class Msg extends AbstractModel {
         try {
             // セッション取得
             $msgs_with_type = static::getSessionAndFlush() ?? [];
+            // $type:メッセージタイプ $msgs:メッセージ
             foreach ($msgs_with_type as $type=>$msgs) {
                                                 // デバック定数
                 if ($type === static::DEBUG && !DEBUG) {
                     continue;
                 }
-    
+
+                $color = $type === static::INFO ? 'alert-info' : 'alert-danger';
+
                 foreach ($msgs as $msg) {
-                    echo "<div>{$type}:{$msg}</div>";
+                    echo "<div class='alert $color'>{$msg}</div>";
                 }
             }
 

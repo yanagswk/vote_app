@@ -126,6 +126,17 @@ class Auth {
 
         return true;
     }
+
+
+    /**
+     * ログインしていない状態でアクセスしたら、ログインページへリダイレクトさせる。
+     */
+    public static function requireLogin() {
+        if (!static::isLogin()) {
+            Msg::push(Msg::ERROR, 'ログインしてください。');
+            redirect('login');
+        }
+    }
 }
 
 ?>

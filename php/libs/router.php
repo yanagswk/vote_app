@@ -15,8 +15,11 @@ function route($rpath, $method) {
             require_once SOURCE_BASE . "views/404.php";
             return;
         }
+
         require_once $targetFile;
         
+        $rpath = str_replace('/', '\\', $rpath);
+
         $fn = "\\controller\\{$rpath}\\{$method}";
         $fn();
 

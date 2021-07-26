@@ -8,7 +8,10 @@ use model\UserModel;
 
 // login.phpをgetで取得した場合の処理
 function get() {
-    require_once SOURCE_BASE . 'views/login.php';
+    // require_once SOURCE_BASE . 'views/login.php';
+
+    // 関数でlogin.phpを呼ぶ。
+    \view\login\index();
 }
 
 
