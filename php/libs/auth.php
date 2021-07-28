@@ -3,6 +3,7 @@
 namespace lib;
 
 use db\UserQuery;
+use db\TopicQuery;
 use model\UserModel;
 
 class Auth {
@@ -136,6 +137,24 @@ class Auth {
             Msg::push(Msg::ERROR, 'ログインしてください。');
             redirect('login');
         }
+    }
+
+
+    /**
+     * 編集権限があるかをチェック
+     */
+    public static function hasPermission($topic_id, $user) {
+        return TopicQuery::isUserOwnTopic($topic_id, $user);
+    }
+
+    /**
+     * 編集できるユーザーかの結果を返す
+     */
+    public static function requirePermission($topic_id, $user) {
+        if (!static::hasPermission($topic_id, $user)) {
+            Msg::push(Msg::ERROR, '編集権限がありません。ログインして再度試してみてください');
+            redirect('login');
+        } 
     }
 }
 

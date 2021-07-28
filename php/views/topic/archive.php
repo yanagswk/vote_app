@@ -13,7 +13,7 @@ function index($topics) {
         <ul class="container">
             <?php 
             foreach($topics as $topic) {
-                $url = get_url('topic/detail?topic_id=' . $topic->id);
+                $url = get_url('topic/edit?topic_id=' . $topic->id);
                 
                 // 過去の投稿ではラベルは表示
                 \partials\topic_list_item($topic, $url, true);

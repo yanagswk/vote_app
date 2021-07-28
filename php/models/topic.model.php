@@ -27,6 +27,11 @@ class TopicModel extends AbstractModel{
     }
 
 
+    public static function validateId($val) {
+        return true;
+    }
+
+
     // /**
     //  * ログインページユーザーID、バリデーションチェックメソッド
     //  */
