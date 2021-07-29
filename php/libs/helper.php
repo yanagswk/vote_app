@@ -66,4 +66,33 @@ function is_alnum($val) {
     return preg_match("/^[a-zA-Z0-9]+$/", $val);
 }
 
+
+/**
+ * エスケープ処理 再起的な処理
+ * @param mixed $data エスケープ処理の対象になるもの
+ * 
+ * @return mixed
+ */
+function escape($data) {
+
+    // 配列の場合
+    if (is_array($data)) {
+        foreach($data as $prop=>$val) {
+            $data[$prop] = escape($val);
+        }
+        return $data;
+
+    // オブジェクトの場合
+    } elseif(is_object($data)) {
+        foreach($data as $prop => $val) {
+            $data->$prop = escape($val);
+        }
+        return $data;
+
+    } else {
+        return htmlspecialchars($data, ENT_QUOTES, 'utf-8');
+    }
+
+}
+
 ?>

@@ -74,8 +74,65 @@ class TopicQuery {
             ':id' => $topic->id
         ], DataSource::CLS, TopicModel::class);
         return $result;
-
     }
+
+
+    /**
+     * topicテーブルの賛成か反対かをプラスするクエリを実行(自作)
+     * 
+     * @param object $topic トピックオブジェクト
+     */
+    // public static function topicUpdateJudgement($topic) {
+    //     $db = new DataSource;
+    //     if (isset($topic->likes)) {
+    //         $sql = "
+    //             UPDATE topics SET likes=likes+1 WHERE id=:id;
+    //         ";
+    //     } else {
+    //         $sql = "
+    //             UPDATE topics SET dislikes=dislikes+1 WHERE id=:id;
+    //         ";
+    //     }
+
+    //     $result = $db->execute($sql, [
+    //         ':id' => $topic->id,
+    //     ]);
+
+    //     return $result;
+    // }
+
+
+    /**
+     * topicテーブルの賛成か反対かをプラスするクエリを実行
+     * 
+     * @param object $comment トピックオブジェクト
+     * 
+     * @return bool クエリ成功でtrue 失敗でfalse
+     */
+    public static function incrementLikesOrDislikes($comment) {
+
+        // バリデーションチェック
+        // if (!($comment->isValidTopicId()
+        //     * $comment->isValidAgree())) {
+        //         return false;
+        //     }
+
+        $db = new DataSource;
+        if ($comment->agree) {
+            $sql = "
+                UPDATE topics SET likes=likes+1 WHERE id=:topic_id;
+            ";
+        } else {
+            $sql = "
+                UPDATE topics SET dislikes=dislikes+1 WHERE id=:topic_id;
+            ";
+        }
+
+        return $db->execute($sql, [
+            ':topic_id' => $comment->topic_id
+        ]);
+    }
+
 
     // ユーザーidの登録を行い、結果を返す
     // public static function insert($user) {

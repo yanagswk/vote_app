@@ -5,6 +5,9 @@ namespace view\topic\detail;
 
 function index($topic, $comments) {
 
+    $topic = escape($topic);
+    $comments = escape($comments);
+
     // 画面上部
     \partials\topic_header_item($topic, false);
     ?>

@@ -4,6 +4,7 @@ namespace view\home;
 
 
 function index($topics) {
+    $topics = escape($topics);
     // 先頭だけ切り出す
     $topic = array_shift($topics);
 

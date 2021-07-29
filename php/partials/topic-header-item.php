@@ -97,23 +97,36 @@ function comment_form($topic) {
         <?php if (Auth::isLogin()): ?>
             <form action="<?php the_url('topic/detail'); ?>" method="POST">
                 <span class="h4">あなたは賛成？それとも反対？</span>
+                
+                <!-- トピックID -->
                 <input type="hidden" name="topic_id" value="<?php echo $topic->id; ?>">
+                
                 <div class="form-group">
+
+                    <!-- コメントエリア -->
                     <textarea class="w-100 border-light" name="body" id="body" rows="5"></textarea>
+                
                 </div>
 
                 <div class="container">
                     <div class="row h4 form-group">
                         <div class="col-auto d-flex align-items-center pl-0">
+                            
+                            
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="agree" name="agree" value="1" checked>
+                                <!-- 賛成か反対か -->
+                                <!-- <input class="form-check-input" type="radio" id="agree" name="agree" value="1" checked> -->
+                                <input class="form-check-input" type="radio" id="agree" name="judge" value="1" checked>
                                 <label for="agree" class="form-check-label">賛成</label>
                             </div>
                             <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" id="disagree" name="disagree" value="0">
+                                <!-- <input class="form-check-input" type="radio" id="disagree" name="disagree" value="0"> -->
+                                <input class="form-check-input" type="radio" id="disagree" name="judge" value="0">
                                 <label for="disagree" class="form-check-label">反対</label>
                             </div>
                         </div>
+                        
+
                         <input type="submit" value="送信" class="col btn btn-success shadow-sm">
                     </div>
                 </div>
