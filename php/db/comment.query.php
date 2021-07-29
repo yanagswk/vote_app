@@ -37,6 +37,40 @@ class CommentQuery {
     }
 
 
+    /**
+     * コメント追加クエリ
+     * 
+     * @param object $comment コメントオブジェクト
+     */
+    public static function insert($comment) {   
+
+        // コメントのバリデーションチェック
+        // if (!($comment->isValidTopicId()
+        //     * $comment->isValidBody()
+        //     * $comment->isValidAgree())) {
+        //         return false;
+        //     }
+
+
+        $db = new DataSource;
+        $sql = '
+        INSERT INTO comments
+            (topic_id, agree, body, user_id)
+        VALUES
+            (:topic_id, :agree, :body, :user_id);
+        ';
+
+        $result = $db->execute($sql, [
+            ':topic_id' => $comment->topic_id,
+            ':agree' => $comment->agree,
+            ':body' => $comment->body,
+            ':user_id' => $comment->user_id
+        ]);
+
+        return $result;
+    }
+
+
     // ユーザーidの登録を行い、結果を返す
     // public static function insert($user) {
     //     $db = new DataSource;
