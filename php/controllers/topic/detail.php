@@ -80,7 +80,8 @@ function post() {
         }
     }
 
-    // redirect('topic/detail?topic_id=' . $comment->topic_id);
+    redirect('topic/detail?topic_id=' . $comment->topic_id);
+    // redirect(GO_REFERER);
 
     /**
      * 自作
@@ -101,7 +102,6 @@ function post() {
     // $topic_result = TopicQuery::topicUpdateJudgement($topic);
 
     // 一つ前のURLにリダイレクト(同じページ)
-    redirect(GO_REFERER);
 
 }
 

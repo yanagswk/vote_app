@@ -13,16 +13,29 @@ function index () {
     <div class="login-form bg-white p-4 shadow-sm mx-auto rounded">
     
     <!-- フォーム -->
-    <form action="<?php echo CURRENT_URI; ?>" method="POST">
+    <form class="validate-form" action="<?php echo CURRENT_URI; ?>" method="POST" novalidate autocomplete="off">
             <div class="form-group">
                 <!-- idを指定しているので、labelをクリックするとinputにフォーカスが当たる -->
                 <label for="id">ユーザーID</label>
-                <input id="id" type="text" name='id' class="form-control">
+                <input id="id" type="text" name="id" class="form-control validate-target" minlength="4" required maxlength="10" pattern="[a-zA-Z0-9]+" autofocus />
+                <!-- エラーメッセージ用 -->
+                <div class="invalid-feedback"></div>
             </div>
             <div class="form-group">
                 <!-- pwdを指定しているので、labelをクリックするとinputにフォーカスが当たる -->
                 <label for="pwd">パスワード</label>
-                <input id="pwd" type="password" name='pwd' class="form-control">
+                <input
+                    id="pwd"
+                    type="password"
+                    name="pwd"
+                    minlength="4"
+                    required
+                    tabindex="2"
+                    pattern="[a-zA-Z0-9]+"
+                    class="form-control validate-target"
+                />
+                <!-- エラーメッセージ用 -->
+                <div class="invalid-feedback"></div>
             </div>
             <div class="d-flex align-items-center justify-content-between">
                 <div>
