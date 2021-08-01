@@ -18,7 +18,7 @@ function get() {
     // ログインチェック
     Auth::requireLogin();
 
-    // セッションから値を取得(エラーが出た時、に前の値を残しておくようにするため。)
+    // セッションから値を取得(エラーが出た時、前の値を残しておくようにするため。)
     $topic = TopicModel::getSessionAndFlush();
     // セッションから取得できなかった場合は、初期化する。
     if (empty($topic)) {

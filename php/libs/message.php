@@ -48,7 +48,7 @@ class Msg extends AbstractModel {
      */
     public static function flush() {
         try {
-            // セッション取得
+            // セッション取得して、削除する。
             $msgs_with_type = static::getSessionAndFlush() ?? [];
             // $type:メッセージタイプ $msgs:メッセージ
             foreach ($msgs_with_type as $type=>$msgs) {
@@ -57,8 +57,10 @@ class Msg extends AbstractModel {
                     continue;
                 }
 
+                // エラーメッセージタイプによって色を変える
                 $color = $type === static::INFO ? 'alert-info' : 'alert-danger';
 
+                // エラーメッセージ表示
                 foreach ($msgs as $msg) {
                     echo "<div class='alert $color'>{$msg}</div>";
                 }

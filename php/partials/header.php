@@ -45,6 +45,7 @@ function header() {
         <main class="container py-3">
 
 <?php
+// メッセージ表示
 Msg::flush();
 }
 ?>

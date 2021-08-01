@@ -83,26 +83,6 @@ function post() {
     redirect('topic/detail?topic_id=' . $comment->topic_id);
     // redirect(GO_REFERER);
 
-    /**
-     * 自作
-     */
-    // // DBにコメント追加
-    // $comment_result = CommentQuery::commentAdd($comment);
-
-    // $topic = new TopicModel;
-    // $topic->id = $topic_id;
-    
-    // if ($agree === "1") {
-    //     $topic->likes = $agree;
-    // } else {
-    //     $topic->dislikes = $agree;
-    // }
-
-    // // DBに賛成か反対かの数値をプラス
-    // $topic_result = TopicQuery::topicUpdateJudgement($topic);
-
-    // 一つ前のURLにリダイレクト(同じページ)
-
 }
 
 ?>

@@ -11,7 +11,7 @@ class TopicQuery {
      * 
      * @param object $user ユーザーオブジェクト
      * 
-     * @return bool 
+     * @return bool クエリでデータが取得できればtrue、できなければfalse
      */
     public static function fetchByUserId($user) {
         // ユーザーIDチェック
